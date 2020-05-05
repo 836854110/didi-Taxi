@@ -1,0 +1,52 @@
+<!--pages/startPlace/startPlace.wxml-->
+<view>
+  <view class='search-warp'>
+    <view class='sea-place-btn' bindtap='changeCity'>{{city}}</view>
+    <view class='sea-input-wrap'>
+      <input placeholder='你在哪儿上车' bindinput="getsuggest" value="{{backfill}}" bindfocus="nearby_search"></input>
+    </view>
+    <view class='sea-cancle-btn' bindtap='cancle'>取消</view>
+  </view>
+  <!--关键词输入提示列表渲染-->
+  <view class='keyword-wrap' wx:if="{{showPage==1}}">
+    <block wx:for="{{suggestion}}" wx:key="index">
+      <view class='keyword-list' bindtap="selectAddress" data-record="{{item}}" id="{{index}}">
+        <view class='kl-title ellipsis'>{{item.title}}</view>
+        <view class='kl-address ellipsis'>{{item.address}}</view>
+      </view>
+    </block>
+  </view>
+  <!-- 城市搜索 -->
+  <scroll-view wx:elif="{{showPage==2}}" class='city' enable-flex="true">
+    <view class='city-left'>
+      <view class='city-every city-every-back'>
+        <text class='city-every-margin'>当前城市：{{city}}</text>
+      </view>
+      <view wx:for="{{cityData}}" wx:key="">
+        <view class='city-every'>
+          <text class='city-every-margin'>{{item.title}}</text>
+        </view>
+        <view wx:for="{{item.item}}" wx:key="" wx:for-item="itemName" class='city-every city-every-back'
+          bindtap="selectCity" data-citydata="{{itemName}}">
+          <text class='city-every-margin'>{{itemName.name}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 字母 -->
+    <view class='city-right'>
+      <view wx:for="{{cityData}}" wx:key="">{{item.title}}</view>
+    </view>
+  </scroll-view>
+  <view wx:else>
+    <map id="didiStartMap" longitude="{{latiLongi.longitude}}" latitude="{{latiLongi.latitude}}"
+      bindregionchange="regionchange" style="width: 100%; height: 100vh;" subkey="6YRBZ-5BZR4-ID7UU-DH2FL-F5UU6-CDFLV"
+      controls="{{controls}}"></map>
+    <cover-view class='sure-address'>
+      <cover-view class='sa-text'>
+        <cover-view class='sa-address ellipsis'>{{startPlace}}</cover-view>
+        <cover-view class='sa-tip ellipsis'>"{{startPlace}}"附近最佳的上车点</cover-view>
+      </cover-view>
+      <cover-view class="sure-btn" bindtap="sureGetOn">确认上车点</cover-view>
+    </cover-view>
+  </view>
+</view>

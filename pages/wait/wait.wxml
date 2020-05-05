@@ -1,0 +1,21 @@
+<!-- pages/wait/wait.wxml -->
+<view class="wait">
+    <view class="top">
+        您上车的站点为
+        <text class="top-text">[{{startData.startPlace}}]</text>
+    </view>
+    <view class="middle">
+        <view>正在为您寻找车辆和拼友</view>
+        <view>每人一小步，更快更顺路</view>
+        <canvas canvas-id="canvasProgressbg" class="progress_bg"></canvas>
+        <canvas canvas-id="canvasProgress" class="progress_bg"></canvas>
+        <view class="progress_text">
+            <view class='progress_info'>已等待</view>
+            <view class="progress_time">00:{{time<10?"0"+time:time}}</view>
+        </view>
+    </view>
+    <view class="down">
+        <text bindtap="toCancel">取消订单</text>
+        <text bindtap="backIndex">不拼车</text>
+    </view>
+</view>

@@ -1,0 +1,3 @@
+/* pages/endPlace/endPlace.wxss */
+
+@import "/pages/startPlace/startPlace.wxss";

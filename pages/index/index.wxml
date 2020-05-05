@@ -1,0 +1,88 @@
+<view>
+	<!-- 导航条 -->
+	<view class='header flex'>
+		<view>
+			<image src="../../assets/images/nav-me.png"></image>
+		</view>
+		<scroll-view enable-flex="true" scroll-x="true" scroll-with-animation="true" class="nav-scroll" scroll-left="{{navScrollLeft}}">
+			<block wx:for="{{carData}}" wx:key="id">
+				<view class="nav-item {{current==item.id?'nav-active':''}}" data-cartinfo="{{item}}" bindtap='selectNav'>
+					{{item.name}}
+				</view>
+			</block>
+		</scroll-view>
+		<navigator url='/pages/service/service' open-type="redirect">
+			<image src="../../assets/images/nav-all.png"></image>
+		</navigator>
+	</view>
+	<!-- 内容 根据用户选择地址判断 -->
+	<block>
+		<view class='select-address'>
+			<view class='wait-text'>在这里上车</view>
+			<navigator class="start-nav" hover-class="none" url="/pages/startPlace/startPlace">
+				<input value="{{startData.startPlace}}" focus="{{false}}"></input>
+			</navigator>
+			<navigator class='end-nav' hover-class="none" url="/pages/endPlace/endPlace">
+				<input placeholder='你要去哪儿' focus="{{false}}" placeholder-color="#ccc" value="{{endData.endPlace}}"></input>
+			</navigator>
+			<view class="select-price" wx:if="{{endData&&endData.endPlace}}">
+				<view class="sp-top">
+					<view>现在出发</view>
+					<view>换乘车人</view>
+					<view>个人支付</view>
+				</view>
+				<view class="sp-down">
+					<view wx:for="{{priceType}}" wx:key="id" bindtap="clickPrice" data-priceId="{{item.id}}" class="{{priceId===item.id?'price-active':''}}">
+						<view>{{item.name}}</view>
+						<image src="../../assets/images/{{item.image}}.png" class="sp-img" />
+						<view>
+							预计
+							<text>{{item.price}}</text>
+							元
+						</view>
+					</view>
+				</view>
+			</view>
+			<button class="didi-btn" bindtap="callCar">呼叫{{cartName}}</button>
+		</view>
+		<swiper current='{{current}}' class='top-swiper' wx-if="{{!endData.endPlace}}">
+			<swiper-item class="express">
+				<view class="express-members">
+					<view class="members-img">
+						<image src="../../assets/images/members.png" />
+					</view>
+					<view class="members-desc">会员</view>
+				</view>
+				<view class="express-members">
+					<view class="members-img">
+						<image src="../../assets/images/package.png" />
+					</view>
+					<view class="members-desc">套餐</view>
+				</view>
+				<view class="express-members">
+					<view class="members-img">
+						<image src="../../assets/images/package.png" />
+					</view>
+					<view class="members-desc">招募</view>
+				</view>
+			</swiper-item>
+			<swiper-item class="express">
+				<view class="express-members">
+					<view class="members-img">
+						<image src="../../assets/images/Pickup.png" />
+					</view>
+					<view class="members-desc">接机</view>
+				</view>
+				<view class="express-package">
+					<view class="members-img">
+						<image src="../../assets/images/Picksend.png" />
+					</view>
+					<view class="members-desc">送机</view>
+				</view>
+			</swiper-item>
+			<swiper-item class="express" wx:for="{{[0,1,2,3,4,5]}}" wx:key="item">
+				<text>后续完善</text>
+			</swiper-item>
+		</swiper>
+	</block>
+</view>

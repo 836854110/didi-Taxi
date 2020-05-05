@@ -1,0 +1,25 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/startPlace/startPlace",
+    "pages/logs/logs",
+    "pages/service/service",
+    "pages/endPlace/endPlace",
+    "pages/wait/wait",
+    "pages/orderService/orderService",
+    "pages/cancel/cancel",
+    "pages/order/order"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1b1b1f",
+    "navigationBarTitleText": "快乐打车车",
+    "navigationBarTextStyle": "white"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "测试"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,29 @@
+/* pages/service/service.wxss */
+
+.service {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ser-warp {
+  flex: 0 0 33.3333%;
+  text-align: center;
+  border: 1rpx solid #ccc;
+  box-sizing: border-box;
+  padding: 30rpx 0;
+  font-size: 32rpx;
+  border-right: 0;
+  border-top: 0;
+}
+
+.ser-img {
+  width: 70rpx;
+  height: 30rpx;
+}
+
+.ser-text {
+  margin-top: 16rpx;
+}
+.active {
+  color: aquamarine;
+}

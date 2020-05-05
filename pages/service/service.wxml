@@ -1,0 +1,9 @@
+<!-- pages/service/service.wxml -->
+<view class='service'>
+  <block wx:for="{{carData}}" wx:key="id">
+    <view bindtap='clickCart' data-cardata="{{item}}" class='ser-warp {{item.id==currrent?"active":""}}'>
+      <image src="../../assets/images/{{item.url}}.png" class='ser-img' />
+      <view class='ser-text'>{{item.name}}</view>
+    </view>
+  </block>
+</view>
